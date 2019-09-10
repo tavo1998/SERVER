@@ -11,7 +11,7 @@ CREATE TABLE PRODUCTO(
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(20) NOT NULL,
     cantidad INTEGER DEFAULT 0,
-    precio INTEGER NOT NULL,
+    precio INTEGER NOT NULL
 );
 
 CREATE TABLE CLIENTE(
@@ -41,15 +41,15 @@ CREATE TABLE USUARIO(
 CREATE TABLE PEDIDO(
     numeropedido SERIAL PRIMARY KEY,
     fecha DATE NOT NULL DEFAULT NOW(),
-    proveedor NUMBER NOT NULL,
+    proveedor INTEGER NOT NULL,
     empleado INTEGER NOT NULL,
     FOREIGN KEY(proveedor) REFERENCES PROVEEDOR(nit),
     FOREIGN KEY(empleado) REFERENCES EMPLEADO(cc)
 );
 
 CREATE TABLE CONTIENE(
-    numeropedido NUMBER,
-    producto NUMBER,
+    numeropedido INTEGER,
+    producto INTEGER,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY(numeropedido) REFERENCES PEDIDO(numeropedido),
     FOREIGN KEY(producto) REFERENCES PRODUCTO(id),
@@ -66,8 +66,8 @@ CREATE TABLE VENTA(
 );
 
 CREATE TABLE TIENE(
-    numeroventa NUMBER,
-    producto NUMBER,
+    numeroventa INTEGER,
+    producto INTEGER,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY(numeroventa) REFERENCES VENTA(numeroventa),
     FOREIGN KEY(producto) REFERENCES PRODUCTO(id)

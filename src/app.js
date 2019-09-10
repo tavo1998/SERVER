@@ -1,6 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
-const loginRouter = require('./routes/login');
+const authRouter = require('./routes/auth');
+const empleadoRouter = require('./routes/empleado');
+const clienteRouter = require('./routes/cliente');
+const productoRouter = require('./routes/producto');
+const proveedorRouter = require('./routes/proveedor');
 
 const app = express();
 
@@ -13,8 +17,11 @@ app.set('PORT', 5000);
 
 
 //ROUTES
-app.use('/auth', loginRouter);
-
+app.use('/auth', authRouter);
+app.use('/empleado', empleadoRouter);
+app.use('/cliente', clienteRouter);
+app.use('/producto', productoRouter);
+app.use('/proveedor', proveedorRouter);
 
 app.listen(app.get('PORT'), () => {
     console.log('Funcionando con éxito');

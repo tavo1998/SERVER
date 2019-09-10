@@ -1,5 +1,5 @@
 CREATE TABLE PROVEEDOR(
-    nit SERIAL PRIMARY KEY,
+    nit INTEGER PRIMARY KEY,
     nombre VARCHAR(20) NOT NULL,
     telefono VARCHAR(10) NOT NULL,
     direccion VARCHAR(10) NOT NULL,
@@ -18,8 +18,8 @@ CREATE TABLE CLIENTE(
     cc INTEGER PRIMARY KEY,
     nombre VARCHAR(20) NOT NULL,
     apellido VARCHAR(20) NOT NULL,
-    telefono VARCHAR(10) NOT NULL,
-    direccion VARCHAR(10) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    direccion VARCHAR(20) NOT NULL,
     email VARCHAR(20) NOT NULL
 );
 
@@ -27,13 +27,13 @@ CREATE TABLE EMPLEADO(
     cc INTEGER PRIMARY KEY,
     nombre VARCHAR(20) NOT NULL,
     apellido VARCHAR(20) NOT NULL,
-    telefono VARCHAR(10) NOT NULL,
-    direccion VARCHAR(10) NOT NULL
+    telefono VARCHAR(20) NOT NULL,
+    direccion VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE USUARIO(
     nombre VARCHAR(20) PRIMARY KEY,
-    clave VARCHAR(50) NOT NULL,
+    clave VARCHAR(100) NOT NULL,
     cc INTEGER NOT NULL,
     FOREIGN KEY(cc) REFERENCES EMPLEADO(cc)
 );

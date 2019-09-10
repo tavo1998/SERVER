@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const authRouter = require('./routes/auth');
 const empleadoRouter = require('./routes/empleado');
 const clienteRouter = require('./routes/cliente');
@@ -16,6 +17,7 @@ const app = express();
 //MIDDLEWARES
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(cors());
 
 //SETTINGS
 app.set('PORT', 5000);

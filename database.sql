@@ -70,5 +70,6 @@ CREATE TABLE TIENE(
     producto INTEGER,
     cantidad INTEGER NOT NULL DEFAULT 1,
     FOREIGN KEY(numeroventa) REFERENCES VENTA(numeroventa),
-    FOREIGN KEY(producto) REFERENCES PRODUCTO(id)
+    FOREIGN KEY(producto) REFERENCES PRODUCTO(id),
+    PRIMARY KEY(numeroventa, producto)
 );

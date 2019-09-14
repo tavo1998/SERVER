@@ -73,3 +73,23 @@ CREATE TABLE TIENE(
     FOREIGN KEY(producto) REFERENCES PRODUCTO(id),
     PRIMARY KEY(numeroventa, producto)
 );
+
+CREATE TRIGGER vender
+BEFORE UPDATE ON PRODUCTO
+FOR EACH ROW
+EXECUTE PROCEDURE checkventa();
+
+
+CREATE FUNCTION checkventa() RETURNS TRIGGER AS 
+$$
+BEGIN
+
+IF NEW.cantidad < 0 THEN
+RAISE 'Se agotaron los productos de este tipo';
+ELSE
+RETURN NEW;
+END IF;
+
+END;
+$$
+LANGUAGE plpgsql;

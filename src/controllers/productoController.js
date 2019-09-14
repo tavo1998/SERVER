@@ -45,8 +45,30 @@ const getProductos = (req,res) => {
         }))
 }
 
+const comprarProducto = (req,res) => {
+    const { id, cantidad } = req.body;
+
+    Producto.findOne({where: {id}})
+        .then(producto => producto.increment('cantidad', {by: cantidad}))
+        .then(producto => res.json({status: 'ok', data: producto}))
+        .catch(() => res.json({status: 'error', message: 'Error al actualizar el producto'}))
+
+}
+
+const venderProducto = (req,res) => {
+    const { id, cantidad } = req.body;
+
+    Producto.findOne({where: {id}})
+        .then(producto => producto.decrement('cantidad', {by: cantidad}))
+        .then(producto => res.json({status: 'ok', data: producto}))
+        .catch((e) => res.json({status: 'error', message: e.original.message}))
+        
+}
+
 module.exports = {
     addProducto,
     getProducto,
-    getProductos
+    getProductos,
+    comprarProducto,
+    venderProducto
 }

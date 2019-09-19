@@ -1,4 +1,5 @@
 const Venta = require('./../models/venta');
+const sequelize = require('./../db');
 
 const addVenta = (req,res) => {
     const { fecha, cliente, empleado } = req.body;
@@ -38,10 +39,20 @@ const getVentas = (req,res) => {
         }))
 }
 
+const totalVentas = (req,res) => {
+    Venta.findAll({
+        attributes: [[sequelize.fn('COUNT', sequelize.col('numeroventa')), 'total']]
+    })
+    .then(data => res.json({status:'ok', data: data[0]}))
+    .catch(e => res.json({status: 'error', message: 'Error al intentar obtener la cantidad de ventas'}))
+
+}
+
 
 module.exports = {
     addVenta,
     getVenta,
-    getVentas
+    getVentas,
+    totalVentas
 };
 

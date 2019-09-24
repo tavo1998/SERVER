@@ -26,7 +26,7 @@ const Proveedor = sequelize.define('proveedor',{
     tipo: {
         type: Sequelize.STRING(10),
         validate: {
-            isIn: [['Frutas', 'Verduras']],
+            isIn: [['frutas', 'verduras']],
         }
     }
 })
